@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D8235260-7864-4178-B779-CD41882E2041}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{C65E1090-74F2-49D3-97D5-E42F04895D1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeCourse.Services.Catalog", "Services\Catalog\FreeCourse.Services.Catalog\FreeCourse.Services.Catalog.csproj", "{CD448F05-EEDC-46B0-95CF-BCE4E9F68E57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDBB138B-5C88-4CAD-94C8-7E9A8258092E}"
+	ProjectSection(SolutionItems) = preProject
+		Ports.txt = Ports.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD448F05-EEDC-46B0-95CF-BCE4E9F68E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD448F05-EEDC-46B0-95CF-BCE4E9F68E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD448F05-EEDC-46B0-95CF-BCE4E9F68E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD448F05-EEDC-46B0-95CF-BCE4E9F68E57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C65E1090-74F2-49D3-97D5-E42F04895D1B} = {D8235260-7864-4178-B779-CD41882E2041}
+		{CD448F05-EEDC-46B0-95CF-BCE4E9F68E57} = {C65E1090-74F2-49D3-97D5-E42F04895D1B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E50399EF-C160-4E05-85A4-0B563C2CD924}
+	EndGlobalSection
+EndGlobal
