@@ -34,9 +34,7 @@ public class CategoryService : ICategoryService
     public async Task<Response<CategoryDto>> CreateAsync(CategoryDto categoryDto)
     {
         var category = _mapper.Map<Category>(categoryDto);
-
-        await _categories
-                     .InsertOneAsync(category);
+        await _categories.InsertOneAsync(category);
 
         return Response<CategoryDto>
               .Success(_mapper.Map<CategoryDto>(category), 200);

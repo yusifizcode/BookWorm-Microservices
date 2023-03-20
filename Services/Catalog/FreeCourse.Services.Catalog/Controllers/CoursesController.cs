@@ -15,6 +15,7 @@ public class CoursesController : CustomBaseController
         => _courseService = courseService;
 
 
+    [HttpGet]
     public async Task<IActionResult> GetAll()
     {
         var response = await _courseService.GetAllAsync();
@@ -28,6 +29,7 @@ public class CoursesController : CustomBaseController
         return CreateActionResultInstance(response);
     }
 
+    [HttpGet]
     [Route("/api/[controller]/GetAllByUserId/{userId}")]
     public async Task<IActionResult> GetAllByUserId(string userId)
     {

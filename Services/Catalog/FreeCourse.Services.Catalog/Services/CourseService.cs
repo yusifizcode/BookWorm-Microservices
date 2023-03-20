@@ -26,13 +26,13 @@ public class CourseService : ICourseService
 
     public async Task<Response<List<CourseDto>>> GetAllAsync()
     {
-        var courses = await _courses.Find(c => true).ToListAsync();
+        var courses = await _courses.Find(course => true).ToListAsync();
 
         if (courses.Any())
         {
             foreach (var course in courses)
             {
-                course.Category = await _categories.Find<Category>(c => c.Id == course.Id).FirstAsync();
+                course.Category = await _categories.Find<Category>(x => x.Id == course.CategoryId).FirstAsync();
             }
         }
         else
@@ -57,13 +57,13 @@ public class CourseService : ICourseService
 
     public async Task<Response<List<CourseDto>>> GetAllByUserIdAsync(string userId)
     {
-        var courses = await _courses.Find(c => c.UserId == userId).ToListAsync();
+        var courses = await _courses.Find<Course>(x => x.UserId == userId).ToListAsync();
 
         if (courses.Any())
         {
             foreach (var course in courses)
             {
-                course.Category = await _categories.Find<Category>(c => c.Id == course.Id).FirstAsync();
+                course.Category = await _categories.Find<Category>(x => x.Id == course.CategoryId).FirstAsync();
             }
         }
         else
