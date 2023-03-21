@@ -54,6 +54,7 @@ namespace FreeCourse.IdentityServer
                     ClientName = "Asp.Net Core MVC",
                     ClientId = "WebMvcClientForUser",
                     ClientSecrets = { new Secret("secret".Sha256()) },
+                    AllowOfflineAccess = true,
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowedScopes = { IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId,
                                       IdentityServerConstants.StandardScopes.Profile, IdentityServerConstants.StandardScopes.OfflineAccess, "roles" },
