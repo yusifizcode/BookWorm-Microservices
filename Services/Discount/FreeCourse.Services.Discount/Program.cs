@@ -26,15 +26,15 @@ builder.Services.AddControllers(opt =>
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 
-// ISharedIdentityService vasitesile userId goturmek ucun : 
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
-
-builder.Services.AddScoped<IDiscountService, DiscountService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// ISharedIdentityService vasitesile userId goturmek ucun : 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
 
 var app = builder.Build();
 
