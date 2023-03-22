@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+// framework user'in claim'leri icherisinde sub keyword'unu nameidentifier'e deyishdirir. Bunun qabagini almaq ucun:
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
 builder.Services.AddControllers(opt =>
 {
