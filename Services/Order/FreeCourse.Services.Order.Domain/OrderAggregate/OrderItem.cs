@@ -9,6 +9,7 @@ public class OrderItem : Entity
     public string PictureUrl { get; private set; }
     public decimal Price { get; private set; }
 
+    public OrderItem() { }
     // EF Core Feature -> Shadow Property (OrderId olmasa da elave edir)
     public OrderItem(string productId, string productName, string pictureUrl, decimal price)
     {

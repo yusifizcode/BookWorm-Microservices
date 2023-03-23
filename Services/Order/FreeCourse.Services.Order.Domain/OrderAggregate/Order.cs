@@ -10,6 +10,7 @@ public class Order : Entity, IAggregateRoot
     // EF Core Feature -> Backing Field (Field vasitesile set edilmenin qarshisini alib, ancaq oxumaq icazesi veririk)
     private readonly List<OrderItem> _orderItems;
 
+    public Order() { }
     public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
     public Order(string buyerId, Address address)
