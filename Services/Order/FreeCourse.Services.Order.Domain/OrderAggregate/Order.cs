@@ -22,7 +22,7 @@ public class Order : Entity, IAggregateRoot
 
     public void AddOrderItem(string productId, string productName, decimal price, string pictureUrl)
     {
-        var existProduct = _orderItems.Any(x => x.Id == productId);
+        var existProduct = _orderItems.Any(x => x.ProductId == productId);
 
         if (!existProduct)
         {
