@@ -9,5 +9,5 @@ public class SignInInput
     [Display(Name = "Your Password")]
     public string Password { get; set; }
     [Display(Name = "Remember me")]
-    public bool Remember { get; set; }
+    public bool IsRemember { get; set; }
 }
