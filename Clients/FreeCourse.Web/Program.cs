@@ -25,6 +25,8 @@ builder.Services.AddHttpClient<ICatalogService, CatalogService>(opt =>
     opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.Catalog.Path}");
 });
 
+builder.Services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
+
 builder.Services.AddHttpClient<IUserService, UserService>(opt =>
 {
     opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
