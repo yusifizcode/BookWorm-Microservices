@@ -1,4 +1,5 @@
-﻿using FreeCourse.Web.Models.Catalog;
+﻿using FreeCourse.Shared.DTOs;
+using FreeCourse.Web.Models.Catalog;
 using FreeCourse.Web.Services.Interfaces;
 
 namespace FreeCourse.Web.Services;
@@ -9,38 +10,72 @@ public class CatalogService : ICatalogService
     public CatalogService(HttpClient client)
         => _client = client;
 
-    public Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
+    public async Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
     {
-        throw new NotImplementedException();
+        var response = await _client.PostAsJsonAsync<CourseCreateInput>("Courses", courseCreateInput);
+
+        return response.IsSuccessStatusCode;
     }
 
-    public Task<bool> DeleteCourseAsync(string courseId)
+    public async Task<bool> DeleteCourseAsync(string courseId)
     {
-        throw new NotImplementedException();
+        var response = await _client.DeleteAsync($"Courses/{courseId}");
+
+        return response.IsSuccessStatusCode;
     }
 
-    public Task<List<CategoryViewModel>> GetAllCategoryAsync()
+    public async Task<List<CategoryViewModel>> GetAllCategoryAsync()
     {
-        throw new NotImplementedException();
+        // http://localhost:5000/services/catalog/categories
+        var response = await _client.GetAsync("Categories");
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CategoryViewModel>>>();
+        return responseSuccess.Data;
     }
 
-    public Task<List<CourseViewModel>> GetAllCourseAsync()
+    public async Task<List<CourseViewModel>> GetAllCourseAsync()
     {
-        throw new NotImplementedException();
+        // http://localhost:5000/services/catalog/courses
+        var response = await _client.GetAsync("Courses");
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
+        return responseSuccess.Data;
     }
 
-    public Task<List<CourseViewModel>> GetAllCourseByUserIdAsync(string userId)
+    public async Task<List<CourseViewModel>> GetAllCourseByUserIdAsync(string userId)
     {
-        throw new NotImplementedException();
+        // http://localhost:5000/services/catalog/courses/GetAllByUserId/{userId}
+        var response = await _client.GetAsync($"Courses/GetAllByUserId/{userId}");
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
+        return responseSuccess.Data;
     }
 
-    public Task<CourseViewModel> GetByCourseId(string courseId)
+    public async Task<CourseViewModel> GetByCourseId(string courseId)
     {
-        throw new NotImplementedException();
+        // http://localhost:5000/services/catalog/courses/{courseId}
+        var response = await _client.GetAsync($"Courses/{courseId}");
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<CourseViewModel>>();
+        return responseSuccess.Data;
     }
 
-    public Task<bool> UpdateCourseAsync(CourseUpdateInput courseUpdateInput)
+    public async Task<bool> UpdateCourseAsync(CourseUpdateInput courseUpdateInput)
     {
-        throw new NotImplementedException();
+        var response = await _client.PutAsJsonAsync<CourseUpdateInput>("Courses", courseUpdateInput);
+
+        return response.IsSuccessStatusCode;
     }
 }
