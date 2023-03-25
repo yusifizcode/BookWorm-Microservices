@@ -1,3 +1,4 @@
+using FreeCourse.Shared.Services;
 using FreeCourse.Web.Handlers;
 using FreeCourse.Web.Models;
 using FreeCourse.Web.Services;
@@ -10,12 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+
 var serviceApiSettings = builder.Configuration
                                 .GetSection("ServiceApiSettings")
                                 .Get<ServiceApiSettings>();
 
 builder.Services.AddScoped<ResourceOwnerPasswordTokenHandler>();
-
 
 builder.Services.AddHttpClient<IIdentityService, IdentityService>();
 builder.Services.AddHttpClient<ICatalogService, CatalogService>(opt =>
