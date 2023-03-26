@@ -44,4 +44,27 @@ public class CoursesController : Controller
 
         return RedirectToAction("Index", "Courses");
     }
+
+    public async Task<IActionResult> Update(string id)
+    {
+        var course = await _catalogService.GetByCourseId(id);
+        var categories = await _catalogService.GetAllCategoryAsync();
+
+        if (course == null) return RedirectToAction(nameof(Index));
+
+        ViewBag.Categories = new SelectList(categories, "Id", "Name");
+        CourseUpdateInput courseUpdateInput = new()
+        {
+            Id = course.Id,
+            Name = course.Name,
+            Price = course.Price,
+            UserId = course.UserId,
+            Feature = course.Feature,
+            Picture = course.Picture,
+            CategoryId = course.CategoryId,
+            Description = course.Description
+        };
+
+        return View(courseUpdateInput);
+    }
 }

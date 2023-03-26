@@ -18,6 +18,7 @@
                             <th>Course Name</th>
                             <th>Course Price</th>
                             <th>Course Duration</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,10 @@
                                 <td>@course.Name</td>
                                 <td>@course.Price</td>
                                 <td>@course.Feature.Duration</td>
+                                <td>
+                                    <a asp-controller="Courses" asp-action="Update" asp-route-id="@course.Id" class="btn btn-outline-warning btn-sm">Update</a>
+                                    <a asp-controller="Courses" asp-action="Delete" asp-route-id="@course.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
