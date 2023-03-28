@@ -1,8 +1,27 @@
-﻿@{
+﻿@model List<CourseViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Courses</h2>
+<hr />
+
+@if (Model.Any())
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <img src="@course.StockPictureUrl" height="250" style="object-fit:cover" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@course.Name</h5>
+                    <p class="card-text">@course.ShortDescription</p>
+                    <h4 class="text-primary">$@course.Price</h4>
+                    <a class="btn btn-success" asp-action="Detail" asp-route-id="@course.Id">Learn More..</a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+}

@@ -1,0 +1,26 @@
+﻿@model CourseViewModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="row justify-content-between">
+    <div class="col-md-6">
+        <div class="card">
+            <img src="@Model.StockPictureUrl" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">@Model.Description</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Price: $@Model.Price</h4>
+                <a href="#" class="btn btn-primary">Add to basket</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
