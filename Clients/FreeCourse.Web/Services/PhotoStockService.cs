@@ -1,4 +1,5 @@
-﻿using FreeCourse.Web.Models.PhotoStocks;
+﻿using FreeCourse.Shared.DTOs;
+using FreeCourse.Web.Models.PhotoStocks;
 using FreeCourse.Web.Services.Interfaces;
 
 namespace FreeCourse.Web.Services;
@@ -32,6 +33,8 @@ public class PhotoStockService : IPhotoStockService
         var response = await _client.PostAsync("photos", multiPartContent);
         if (!response.IsSuccessStatusCode) return null;
 
-        return await response.Content.ReadFromJsonAsync<PhotoViewModel>();
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<PhotoViewModel>>();
+
+        return responseSuccess.Data;
     }
 }

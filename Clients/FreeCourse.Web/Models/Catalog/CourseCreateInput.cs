@@ -16,4 +16,5 @@ public class CourseCreateInput
     [Display(Name = "Category")]
     [Required]
     public string CategoryId { get; set; }
+    public IFormFile PhotoFormFile { get; set; }
 }
