@@ -26,7 +26,10 @@ public class BasketsController : CustomBaseController
 
     [HttpPost]
     public async Task<IActionResult> SaveOrUpdate(BasketDto basketDto)
-        => CreateActionResultInstance(await _basketService.SaveOrUpdate(basketDto));
+    {
+        basketDto.UserId = _sharedIdentityService.GetUserId;
+        return CreateActionResultInstance(await _basketService.SaveOrUpdate(basketDto));
+    }
 
     [HttpDelete]
     public async Task<IActionResult> DeleteBasket()
