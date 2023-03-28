@@ -1,4 +1,5 @@
 ﻿using FreeCourse.Shared.DTOs;
+using FreeCourse.Web.Helpers;
 using FreeCourse.Web.Models.Catalog;
 using FreeCourse.Web.Services.Interfaces;
 
@@ -7,11 +8,24 @@ namespace FreeCourse.Web.Services;
 public class CatalogService : ICatalogService
 {
     private readonly HttpClient _client;
-    public CatalogService(HttpClient client)
-        => _client = client;
+    private readonly IPhotoStockService _photoStockService;
+    private readonly PhotoHelper _photoHelper;
+    public CatalogService(HttpClient client,
+                          PhotoHelper photoHelper,
+                          IPhotoStockService photoStockService)
+    {
+        _client = client;
+        _photoHelper = photoHelper;
+        _photoStockService = photoStockService;
+    }
 
     public async Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
     {
+        var resultPhotoService = await _photoStockService.UploadPhoto(courseCreateInput.PhotoFormFile);
+
+        if (resultPhotoService != null)
+            courseCreateInput.Picture = resultPhotoService.Url;
+
         var response = await _client.PostAsJsonAsync<CourseCreateInput>("Courses", courseCreateInput);
 
         return response.IsSuccessStatusCode;
@@ -45,6 +59,12 @@ public class CatalogService : ICatalogService
             return null;
 
         var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
+
+        responseSuccess.Data.ForEach(x =>
+        {
+            x.Picture = _photoHelper.GetPhotoStockUrl(x.Picture);
+        });
+
         return responseSuccess.Data;
     }
 
@@ -57,6 +77,12 @@ public class CatalogService : ICatalogService
             return null;
 
         var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
+
+        responseSuccess.Data.ForEach(x =>
+        {
+            x.Picture = _photoHelper.GetPhotoStockUrl(x.Picture);
+        });
+
         return responseSuccess.Data;
     }
 

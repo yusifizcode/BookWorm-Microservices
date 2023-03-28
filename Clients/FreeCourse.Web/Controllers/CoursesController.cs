@@ -12,15 +12,12 @@ public class CoursesController : Controller
 {
     private readonly ICatalogService _catalogService;
     private readonly ISharedIdentityService _sharedIdentityService;
-    private readonly IPhotoStockService _photoStockService;
 
     public CoursesController(ICatalogService catalogService,
-                             ISharedIdentityService sharedIdentityService,
-                             IPhotoStockService photoStockService)
+                             ISharedIdentityService sharedIdentityService)
     {
         _catalogService = catalogService;
         _sharedIdentityService = sharedIdentityService;
-        _photoStockService = photoStockService;
     }
 
     public async Task<IActionResult> Index()
@@ -37,12 +34,6 @@ public class CoursesController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CourseCreateInput courseCreateInput)
     {
-        var resultPhotoService = await _photoStockService.UploadPhoto(courseCreateInput.PhotoFormFile);
-
-        if (resultPhotoService != null)
-            courseCreateInput.Picture = resultPhotoService.Url;
-
-
         var categories = await _catalogService.GetAllCategoryAsync();
         ViewBag.Categories = new SelectList(categories, "Id", "Name");
 
