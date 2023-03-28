@@ -6,13 +6,32 @@ namespace FreeCourse.Web.Services;
 public class PhotoStockService : IPhotoStockService
 {
     private readonly HttpClient _client;
-    public Task<bool> DeletePhoto(string photoUrl)
+
+    public PhotoStockService(HttpClient client)
+        => _client = client;
+
+    public async Task<bool> DeletePhoto(string photoUrl)
     {
-        throw new NotImplementedException();
+        var response = await _client.DeleteAsync($"photos?photoUrl={photoUrl}");
+        return response.IsSuccessStatusCode;
     }
 
-    public Task<PhotoViewModel> UploadPhoto(IFormFile photo)
+    public async Task<PhotoViewModel> UploadPhoto(IFormFile photo)
     {
-        throw new NotImplementedException();
+        if (photo == null || photo.Length <= 0) return null;
+
+        // example: 332542345234523453252345.jpg
+        var randomFileName = $"{Guid.NewGuid().ToString()}{Path.GetExtension(photo.FileName)}";
+
+        using var memoryStream = new MemoryStream();
+        await photo.CopyToAsync(memoryStream);
+
+        var multiPartContent = new MultipartFormDataContent();
+        multiPartContent.Add(new ByteArrayContent(memoryStream.ToArray()), "photo", randomFileName);
+
+        var response = await _client.PostAsync("photos", multiPartContent);
+        if (!response.IsSuccessStatusCode) return null;
+
+        return await response.Content.ReadFromJsonAsync<PhotoViewModel>();
     }
 }
