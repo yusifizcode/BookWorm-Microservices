@@ -7,6 +7,10 @@ public class BasketViewModel
     public int? DiscountRate { get; set; }
     private List<BasketItemViewModel> _basketItems { get; set; }
 
+    public BasketViewModel()
+    {
+        _basketItems = new List<BasketItemViewModel>();
+    }
     public List<BasketItemViewModel> BasketItems
     {
         get
@@ -24,7 +28,7 @@ public class BasketViewModel
         set { _basketItems = value; }
     }
 
-    public decimal TotalPrice { get => _basketItems.Sum(x => x.GetCurrentPrice * x.Price); }
+    public decimal TotalPrice { get => _basketItems.Sum(x => x.GetCurrentPrice); }
 
     public bool HasDiscount { get => !string.IsNullOrEmpty(DiscountCode); }
 }

@@ -10,14 +10,15 @@
             <div class="card-body">
                 <h5 class="card-title">@Model.Name</h5>
                 <p class="card-text">@Model.Description</p>
+                <p class="card-text">Category: @Model.Category.Name</p>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body d-grid">
                 <h4 class="card-title">Price: $@Model.Price</h4>
-                <a href="#" class="btn btn-primary">Add to basket</a>
+                <a asp-controller="Basket" asp-action="AddBasketItem" asp-route-courseId="@Model.Id" class="btn btn-primary">Add to basket</a>
             </div>
         </div>
     </div>

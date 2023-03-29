@@ -15,7 +15,7 @@ public class BasketService : IBasketService
 
     public async Task AddBasketItem(BasketItemViewModel basketItemViewModel)
     {
-        var basket = await Get();
+        BasketViewModel basket = await Get();
 
         if (basket != null)
         {

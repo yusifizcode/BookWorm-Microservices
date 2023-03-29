@@ -18,6 +18,7 @@
                     <h5 class="card-title">@course.Name</h5>
                     <p class="card-text">@course.ShortDescription</p>
                     <h4 class="text-primary">$@course.Price</h4>
+                    <p class="card-text">Category: @course.Category.Name</p>
                     <a class="btn btn-success" asp-action="Detail" asp-route-id="@course.Id">Learn More..</a>
                 </div>
             </div>
