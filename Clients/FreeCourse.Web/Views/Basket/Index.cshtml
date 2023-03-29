@@ -31,7 +31,7 @@
                                     $@item.GetCurrentPrice @(Model.HasDiscount ? $"(%{Model.DiscountRate.Value} applied)" : "")
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-courseId="@item.CourseId">sil</a>
+                                    <a class="btn btn-danger" asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-courseId="@item.CourseId">Delete</a>
                                 </td>
                             </tr>
                         }
@@ -40,7 +40,7 @@
                         {
 
                             <tr>
-                                <td>Indirim oranı</td>
+                                <td>Discount rate</td>
                                 <th colspan="2"> % @Model.DiscountRate.Value</th>
                             </tr>
 
@@ -56,20 +56,20 @@
                         @if (Model.HasDiscount)
                         {
                             <div class="alert alert-success">
-                                "@Model.DiscountCode"indirim kodu uygulandı
-                                <a asp-controller="Basket" asp-action="CancelApplyDiscount"> (iptal et)</a>
+                                "@Model.DiscountCode" discount code applied!
+                                <a asp-controller="Basket" asp-action="CancelApplyDiscount"> (cancel)</a>
                             </div>
 
                         }
 
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="DiscountApplyInput.Code">
-                            <button class="btn btn-outline-secondary" type="submit">Uygula</button>
+                            <button class="btn btn-outline-secondary" type="submit">Apply</button>
                         </div>
 
                         @if (TempData["discountStatus"] != null && (bool)TempData["discountStatus"] == false)
                         {
-                            <div class="text-danger">indirim kodu geçersiz</div>
+                            <div class="text-danger">Discount Code is invalid!</div>
                         }
                         @if (TempData["discountError"] != null)
                         {
