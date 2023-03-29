@@ -9,6 +9,7 @@ public class ServiceApiSettings
     public ServiceApi PhotoStock { get; set; }
     public ServiceApi Basket { get; set; }
     public ServiceApi Discount { get; set; }
+    public ServiceApi Payment { get; set; }
 }
 
 
