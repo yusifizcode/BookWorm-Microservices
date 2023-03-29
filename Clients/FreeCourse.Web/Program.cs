@@ -1,14 +1,15 @@
+using FluentValidation.AspNetCore;
 using FreeCourse.Shared.Services;
 using FreeCourse.Web.Extensions;
 using FreeCourse.Web.Handlers;
 using FreeCourse.Web.Helpers;
 using FreeCourse.Web.Models;
+using FreeCourse.Web.Validators;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAccessTokenManagement();
 builder.Services.AddSingleton<PhotoHelper>();
@@ -31,6 +32,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                     options.SlidingExpiration = true;
                     options.Cookie.Name = "udemywebcookie";
                 });
+
+builder.Services.AddControllersWithViews()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CourseCreateInputValidator>());
+
 
 var app = builder.Build();
 
