@@ -58,7 +58,7 @@ public class OrderService : IOrderService
             var orderItem = new OrderItemCreateInput()
             {
                 ProductId = x.CourseId,
-                Price = x.Price,
+                Price = x.GetCurrentPrice,
                 PictureUrl = "",
                 ProductName = x.CourseName
             };
@@ -70,7 +70,10 @@ public class OrderService : IOrderService
         if (!response.IsSuccessStatusCode)
             return new OrderCreatedViewModel() { Error = "Order could not be created!", IsSuccessful = false };
 
-        return await response.Content.ReadFromJsonAsync<OrderCreatedViewModel>();
+        var orderCreatedVM = await response.Content.ReadFromJsonAsync<OrderCreatedViewModel>();
+        orderCreatedVM.IsSuccessful = true;
+
+        return orderCreatedVM;
     }
 
     public async Task<List<OrderViewModel>> GetOrder()
