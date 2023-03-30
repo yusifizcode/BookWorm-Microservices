@@ -54,4 +54,7 @@ public class OrderController : Controller
         ViewBag.OrderId = orderId;
         return View();
     }
+
+    public async Task<IActionResult> CheckoutHistory()
+        => View(await _orderService.GetOrder());
 }
