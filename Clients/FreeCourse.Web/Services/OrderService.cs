@@ -70,10 +70,11 @@ public class OrderService : IOrderService
         if (!response.IsSuccessStatusCode)
             return new OrderCreatedViewModel() { Error = "Order could not be created!", IsSuccessful = false };
 
-        var orderCreatedVM = await response.Content.ReadFromJsonAsync<OrderCreatedViewModel>();
-        orderCreatedVM.IsSuccessful = true;
+        var orderCreatedVM = await response.Content.ReadFromJsonAsync<Response<OrderCreatedViewModel>>();
+        orderCreatedVM.Data.IsSuccessful = true;
 
-        return orderCreatedVM;
+        await _basketService.Delete();
+        return orderCreatedVM.Data;
     }
 
     public async Task<List<OrderViewModel>> GetOrder()
