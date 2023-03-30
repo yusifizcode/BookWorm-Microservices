@@ -28,6 +28,7 @@ public class PaymentsController : CustomBaseController
         createOrderMessageCommand.BuyerId = paymentDto.Order.BuyerId;
         createOrderMessageCommand.Line = paymentDto.Order.Address.Line;
         createOrderMessageCommand.Street = paymentDto.Order.Address.Street;
+        createOrderMessageCommand.ZipCode = paymentDto.Order.Address.ZipCode;
         createOrderMessageCommand.District = paymentDto.Order.Address.District;
         createOrderMessageCommand.Province = paymentDto.Order.Address.Province;
 

@@ -126,6 +126,7 @@ public class OrderService : IOrderService
         if (!responsePayment)
             return new OrderSuspendViewModel() { Error = "Payment could not be received!", IsSuccessful = false };
 
+        await _basketService.Delete();
         return new OrderSuspendViewModel() { IsSuccessful = true };
     }
 }
