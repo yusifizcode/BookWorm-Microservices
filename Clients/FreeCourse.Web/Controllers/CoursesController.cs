@@ -20,8 +20,21 @@ public class CoursesController : Controller
         _sharedIdentityService = sharedIdentityService;
     }
 
-    public async Task<IActionResult> Index()
-        => View(await _catalogService.GetAllCourseByUserIdAsync(_sharedIdentityService.GetUserId));
+    public async Task<IActionResult> Index(int page = 1)
+    {
+        ViewBag.Page = page;
+        var courseVMs = await _catalogService.GetAllCourseByUserIdAsync(_sharedIdentityService.GetUserId);
+
+        ViewBag.TotalPages = (int)Math.Ceiling(courseVMs.Count() / 5d);
+
+        if (courseVMs.Count > 0)
+        {
+            if (page < 1 || page > (int)Math.Ceiling(courseVMs.Count() / 5d))
+                return NotFound();
+        }
+
+        return View(courseVMs.Skip((page - 1) * 5).Take(5).ToList());
+    }
 
     public async Task<IActionResult> Create()
     {

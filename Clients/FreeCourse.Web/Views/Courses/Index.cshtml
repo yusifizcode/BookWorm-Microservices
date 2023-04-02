@@ -1,6 +1,8 @@
 ﻿@model List<CourseViewModel>
 @{
     ViewData["Title"] = "Index";
+    int page = ViewBag.Page;
+    int totalPages = ViewBag.TotalPages;
 }
 
 <style>
@@ -89,6 +91,62 @@
                                 else
                                 {
                                     <div class="alert alert-info">Products are not found!</div>
+                                }
+
+                                @if (Model.Count > 0)
+                                {
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pagination__custom justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(page==1?"d-none":"")">
+                                                <a class="page-link" asp-controller="Courses"
+                                               asp-action="Index" asp-route-page="@(page-1)">Previous</a>
+                                            </li>
+                                            @if (page == 1)
+                                            {
+                                                for (int i = page; i <= totalPages; i++)
+                                                {
+                                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item @(page==i?"active":"")">
+                                                        <a class="page-link" asp-controller="Courses" asp-action="Index" asp-route-page="@i">@i</a>
+                                                    </li>
+                                                }
+                                            }
+                                            else if (page == totalPages)
+                                            {
+                                                if (totalPages > 2)
+                                                {
+                                                    for (int i = page - 2; i <= page; i++)
+                                                    {
+                                                        {
+                                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(page==i?"active":"")">
+                                                                <a class="page-link" asp-controller="Courses" asp-action="Index" asp-route-page="@i">@i</a>
+                                                            </li>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 1; i <= page; i++)
+                                                    {
+                                                        <li class="flex-shrink-0 flex-md-shrink-1 page-item @(page==i?"active":"")">
+                                                            <a class="page-link" asp-controller="Courses" asp-action="Index" asp-route-page="@i">@i</a>
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                for (int i = page - 1; i <= page + 1; i++)
+                                                {
+                                                    <li class="flex-shrink-0 flex-md-shrink-1 page-item @(page==i?"active":"")">
+                                                        <a class="page-link" asp-controller="Courses" asp-action="Index" asp-route-page="@i">@i</a>
+                                                    </li>
+                                                }
+                                            }
+                                            <li class="flex-shrink-0 flex-md-shrink-1 page-item @(page==totalPages?"d-none":"")">
+                                                <a class="page-link" asp-controller="Courses" asp-action="Index" asp-route-page="@(page+1)">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
                                 }
                             </div>
                         </div>

@@ -55,6 +55,19 @@ public class OrderController : Controller
         return View();
     }
 
-    public async Task<IActionResult> CheckoutHistory()
-        => View(await _orderService.GetOrder());
+    public async Task<IActionResult> CheckoutHistory(int page = 1)
+    {
+        ViewBag.Page = page;
+        var orderVMs = await _orderService.GetOrder();
+
+        ViewBag.TotalPages = (int)Math.Ceiling(orderVMs.Count() / 5d);
+
+        if (orderVMs.Count > 0)
+        {
+            if (page < 1 || page > (int)Math.Ceiling(orderVMs.Count() / 5d))
+                return NotFound();
+        }
+
+        return View(orderVMs.Skip((page - 1) * 5).Take(5).ToList());
+    }
 }

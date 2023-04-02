@@ -22,7 +22,7 @@ public class ShopController : Controller
         if (courseVMs.Count > 0)
         {
             if (page < 1 || page > (int)Math.Ceiling(courseVMs.Count() / 10d))
-                return RedirectToAction("error", "dashboard");
+                return NotFound();
         }
 
 
