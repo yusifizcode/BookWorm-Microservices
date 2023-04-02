@@ -46,7 +46,7 @@ public class OrderController : Controller
         // return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = orderSuspend.OrderId });
 
         // 2. Async connection
-        return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = new Random().Next(1, 1000) });
+        return RedirectToAction(nameof(SuccessfullCheckout), new { orderId = new Random().Next(1, 1000), checkoutInfoInput = checkoutInfoInput });
     }
 
     public async Task<IActionResult> SuccessfullCheckout(int orderId)

@@ -18,8 +18,13 @@ namespace FreeCourse.Web.Controllers
             _catalogService = catalogService;
         }
 
-        public async Task<IActionResult> Index()
-            => View(await _catalogService.GetAllCourseAsync());
+        public IActionResult Index()
+        {
+            ViewBag.Featured = _catalogService.GetAllCourseAsync().Result.Skip(2).Take(5).ToList();
+            ViewBag.Biographies = _catalogService.GetAllCourseAsync().Result.Skip(3).Take(3).ToList();
+
+            return View(_catalogService.GetAllCourseAsync().Result.Take(5).ToList());
+        }
 
         public async Task<IActionResult> Detail(string id)
             => View(await _catalogService.GetByCourseId(id));

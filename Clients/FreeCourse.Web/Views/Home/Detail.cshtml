@@ -3,7 +3,7 @@
     ViewData["Title"] = "Detail";
 }
 
-<div class="row justify-content-between">
+@*<div class="row justify-content-between">
     <div class="col-md-6">
         <div class="card">
             <img src="@Model.StockPictureUrl" class="card-img-top" />
@@ -22,6 +22,117 @@
             </div>
         </div>
     </div>
+</div>*@
+<style>
+    #site-header .space-bottom-wd-6, .space-wd-6, .space-xl-5, .space-6 {
+        padding-bottom:0px !important;
+    }
+
+    .space-xl-5{
+        padding-top:6rem !important;
+    }
+</style>
+
+<div class="page-header border-bottom ">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center py-4">
+            <h1 class="page-title font-size-3 font-weight-medium m-0 text-lh-lg">Shop Single</h1>
+            <nav class="woocommerce-breadcrumb font-size-2">
+                <a asp-controller="Home" asp-action="Index"
+                   class="h-primary">Home</a>
+                <span class="breadcrumb-separator mx-1"><i class="fa-solid fa-caret-right"></i></span>
+                <a asp-controller="Shop" asp-action="Index" class="h-primary">Shop</a>
+                <span class="breadcrumb-separator mx-1"><i class="fa-solid fa-caret-right"></i></span>@Model.Name
+            </nav>
+        </div>
+    </div>
 </div>
 
+<div id="primary" class="content-area space-xl-5">
+        <main id="main" class="site-main ">
+            <div class="product">
+                <div class="container">
+                    <div class="row">
+                        <div
+                            class="col-md-5 woocommerce-product-gallery woocommerce-product-gallery--with-images images">
+                            <figure class="woocommerce-product-gallery__wrapper pt-8 mb-0">
+                                <div class="js-slick-carousel u-slick"
+                                    data-pagi-classes="text-center u-slick__pagination my-4">
+                                    <div class="js-slide">
+                                        <img src="@Model.StockPictureUrl" alt="Image Description"
+                                            class="mx-auto img-fluid">
+                                    </div>
+                                    <div class="js-slide">
+                                    <img src="@Model.StockPictureUrl" alt="Image Description"
+                                            class="mx-auto img-fluid">
+                                    </div>
+                                    <div class="js-slide">
+                                    <img src="@Model.StockPictureUrl" alt="Image Description"
+                                            class="mx-auto img-fluid">
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="col-md-7 pl-0 summary entry-summary border-left">
+                            <div class="space-top-2 px-4 px-xl-7 border-bottom pb-5">
+                                <h1 class="product_title entry-title font-size-7 mb-3">Where the Crawdads Sing</h1>
+                                
+                                <p class="price font-size-22 font-weight-medium mb-3">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <span class="woocommerce-Price-currencySymbol">$</span>@Model.Price
+                                    </span>
+                                </p>
+                                <div class="mb-2 font-size-2">
+                                    <span class="font-weight-medium">Book Category:</span>
+                                    <span class="ml-2 text-gray-600">@Model.Category?.Name</span>
+                                </div>
 
+                                
+
+                                <div class="woocommerce-product-details__short-description font-size-2 mb-5">
+                                    <p class="">@Model.ShortDescription</p>
+                                </div>
+                            <a asp-controller="Basket" asp-action="AddBasketItem" asp-route-courseId="@Model.Id" 
+                            class="btn btn-dark border-0 rounded-0 p-3 min-width-250 ml-md-4 single_add_to_cart_button button alt">Add to cart</a>
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="js-scroll-nav mb-10">
+                    <div class="woocommerce-tabs wc-tabs-wrapper  2 mx-lg-auto">
+                        <div id="Description" class="">
+                            <div class="border-top border-bottom">
+                                <ul
+                                    class="container tabs wc-tabs nav justify-content-md-center flex-nowrap flex-md-wrap overflow-auto overflow-md-visble">
+                                    <li class="flex-shrink-0 flex-md-shrink-1 nav-item active">
+                                        <a class="nav-link py-4 font-weight-medium active" href="#Description">
+                                            Description
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+
+                            <div class="tab-content font-size-2 container">
+                                <div class="row">
+                                    <div class="col-xl-8 offset-xl-2">
+                                        <div
+                                            class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab pt-9">
+
+                                            <p class="mb-0">@Model.Description</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>

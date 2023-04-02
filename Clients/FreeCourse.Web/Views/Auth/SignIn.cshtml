@@ -4,13 +4,21 @@
 }
 @model FreeCourse.Web.Models.SignInInput
 
-<h1>SignIn</h1>
+<style>
+    #site-header .space-bottom-wd-6, .space-wd-6, .space-xl-5, .space-6 {
+        padding-bottom: 0px !important;
+    }
 
-<div class="row">
+    .space-xl-5 {
+        padding-top: 6rem !important;
+    }
+</style>
+
+<div class="row space-xl-5" style="padding-bottom:6rem !important;">
     <div class="col-md-4 offset-md-4">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Login</h5>
+                <h3 class="card-title text-center">Login</h3>
                 <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
                 <form asp-controller="Auth" asp-action="SignIn" method="post">
                     <div class="mb-3">
@@ -27,8 +35,10 @@
                         <input asp-for="IsRemember" type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label asp-for="IsRemember" class="form-check-label" for="exampleCheck1"></label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn w-100 mb-2" style="background-color:#fff6f6;">Login</button>
+                    <a asp-controller="Auth" asp-action="SignUp" class="button alt btn btn-dark btn-block rounded-0 py-3 w-100">Create Account</a>
                 </form>
+               
             </div>
         </div>
     </div>

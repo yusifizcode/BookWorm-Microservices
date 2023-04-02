@@ -21,6 +21,11 @@ public static class ServiceExtension
             opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
         }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
+        //services.AddHttpClient<IUserService, UserService>(opt =>
+        //{
+        //    opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
+        //}).AddHttpMessageHandler<ClientCredentialTokenHandler>();
+
         services.AddHttpClient<IBasketService, BasketService>(opt =>
         {
             opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUri}/{serviceApiSettings.Basket.Path}");

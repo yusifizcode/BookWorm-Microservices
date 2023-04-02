@@ -2,7 +2,7 @@
     ViewData["Title"] = "Checkout";
 }
 @model CheckoutInfoInput
-<form asp-controller="Order" asp-action="Checkout" method="post">
+@*<form asp-controller="Order" asp-action="Checkout" method="post">
     <div class="row">
 
         <div class="col-md-8">
@@ -76,4 +76,240 @@
             </div>
         </div>
     </div>
-</form>
+</form>*@
+
+<div class="page-header border-bottom">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center py-4">
+            <h1 class="page-title font-size-3 font-weight-medium m-0 text-lh-lg">Checkout</h1>
+            <nav class="woocommerce-breadcrumb font-size-2">
+                <a asp-controller="Home" asp-action="Index" class="h-primary">Home</a>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>
+                <a asp-controller="Shop" asp-action="Index" class="h-primary">Shop</a>
+                <span class="breadcrumb-separator mx-1"><i class="fas fa-angle-right"></i></span>Checkout
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="content" class="site-content bg-punch-light space-bottom-3">
+    <div class="col-full container">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                <article id="post-6" class="post-6 page type-page status-publish hentry">
+                    <header class="entry-header space-top-2 space-bottom-1 mb-2">
+                        <h4 class="entry-title font-size-7 text-center">Checkout</h4>
+                    </header>
+
+                    <div class="entry-content">
+                        <div class="woocommerce">
+                            <form name="checkout" class="checkout woocommerce-checkout row mt-8"
+                                  asp-controller="Order" asp-action="Checkout" method="post"
+                                  enctype="multipart/form-data">
+                                <div class="col2-set col-md-6 col-lg-7 col-xl-8 mb-6 mb-md-0" id="customer_details">
+                                    <div class="px-4 pt-5 bg-white border">
+                                        <div class="woocommerce-billing-fields">
+                                            <h3 class="mb-4 font-size-3">Billing details</h3>
+                                            <div class="woocommerce-billing-fields__field-wrapper row">
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="Province" class="form-label">
+                                                        Province <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                            asp-for="Province"
+                                                           placeholder="Province">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="District" class="form-label">
+                                                        District <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                           asp-for="District"
+                                                           placeholder="District">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="Street" class="form-label">
+                                                        Street <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                           asp-for="Street"
+                                                           placeholder="Street">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="Line" class="form-label">
+                                                        Line <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                           asp-for="Line"
+                                                           placeholder="Line">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="ZipCode" class="form-label">
+                                                        ZipCode <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                           asp-for="ZipCode"
+                                                           placeholder="ZipCode">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="CardName" class="form-label">
+                                                        CardName <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                            asp-for="CardName"
+                                                           placeholder="CardName">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="CardNumber" class="form-label">
+                                                        CardNumber <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                            asp-for="CardNumber"
+                                                           placeholder="CardNumber">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="Expiration" class="form-label">
+                                                        Expiration <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                            asp-for="Expiration"
+                                                           placeholder="Expiration">
+                                                </p>
+                                                <p class="col-12 mb-4d75 form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"
+                                                   id="billing_country_field" data-priority="40">
+                                                    <label asp-for="CVV" class="form-label">
+                                                        CVV <abbr class="required" title="required">*</abbr>
+                                                    </label>
+                                                    <input type="text" class="input-text form-control"
+                                                           asp-for="CVV"
+                                                           placeholder="CVV">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <h3 id="order_review_heading" class="d-none">Your order</h3>
+                                <div id="order_review"
+                                     class="col-md-6 col-lg-5 col-xl-4 woocommerce-checkout-review-order">
+                                    <div id="checkoutAccordion" class="border border-gray-900 bg-white mb-5">
+                                        <div class="p-4d875 border">
+                                            <div id="checkoutHeadingOnee" class="checkout-head">
+                                                <a href="#"
+                                                   class="text-dark d-flex align-items-center justify-content-between"
+                                                   data-toggle="collapse" data-target="#checkoutCollapseOnee"
+                                                   aria-expanded="true" aria-controls="checkoutCollapseOnee">
+                                                    <h3 class="checkout-title mb-0 font-weight-medium font-size-3">
+                                                        Your order
+                                                    </h3>
+                                                    <svg class="mins" xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="15px"
+                                                         height="2px">
+                                                        <path fill-rule="evenodd" fill="rgb(22, 22, 25)"
+                                                              d="M0.000,-0.000 L15.000,-0.000 L15.000,2.000 L0.000,2.000 L0.000,-0.000 Z" />
+                                                    </svg>
+                                                    <svg class="plus" xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="15px"
+                                                         height="15px">
+                                                        <path fill-rule="evenodd" fill="rgb(22, 22, 25)"
+                                                              d="M15.000,8.000 L9.000,8.000 L9.000,15.000 L7.000,15.000 L7.000,8.000 L0.000,8.000 L0.000,6.000 L7.000,6.000 L7.000,-0.000 L9.000,-0.000 L9.000,6.000 L15.000,6.000 L15.000,8.000 Z" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <div id="checkoutCollapseOnee"
+                                                 class="mt-4 checkout-content collapse show"
+                                                 aria-labelledby="checkoutHeadingOnee"
+                                                 data-parent="#checkoutAccordion">
+                                                <table class="shop_table woocommerce-checkout-review-order-table">
+                                                    <thead class="d-none">
+                                                        <tr>
+                                                            <th class="product-name">Product</th>
+                                                            <th class="product-total">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                        @if(ViewBag.Basket != null && (ViewBag.Basket.BasketItems as List<BasketItemViewModel>).Any())
+                                                        {
+                                                            @foreach (var orderItem in ViewBag.Basket.BasketItems as List<BasketItemViewModel>)
+                                                            {
+                                                                <tr class="cart_item">
+                                                                    <td class="product-name">
+                                                                        @orderItem.CourseName
+                                                                    </td>
+                                                                    <td class="product-total">
+                                                                        <span class="woocommerce-Price-amount amount">
+                                                                            <span class="woocommerce-Price-currencySymbol">$</span>@orderItem.GetCurrentPrice
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+
+                                                    </tbody>
+                                                    @*<tfoot class="d-none">
+                                                        <tr class="cart-subtotal">
+                                                            <th>Subtotal</th>
+                                                            <td>
+                                                                <span class="woocommerce-Price-amount amount">
+                                                                    <span class="woocommerce-Price-currencySymbol">£</span>97.99
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="order-total">
+                                                            <th>Total</th>
+                                                            <td>
+                                                                <strong>
+                                                                    <span class="woocommerce-Price-amount amount">
+                                                                        <span class="woocommerce-Price-currencySymbol">£</span>97.99
+                                                                    </span>
+                                                                </strong>
+                                                            </td>
+                                                        </tr>
+                                                    </tfoot>*@
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="p-4d875 border">
+                                            <table class="shop_table shop_table_responsive">
+                                                <tbody>
+                                                    <tr class="order-total">
+                                                        <th>Total</th>
+                                                        <td data-title="Total">
+                                                            <strong>
+                                                                <span class="woocommerce-Price-amount amount">
+                                                                    <span class="woocommerce-Price-currencySymbol">$</span>@(ViewBag.Basket != null ? ViewBag.Basket.TotalPrice : 0)
+                                                                </span>
+                                                            </strong>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="form-row place-order">
+                                        <button type="submit"
+                                           class="button alt btn btn-dark btn-block rounded-0 py-4">Place order</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </article>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>

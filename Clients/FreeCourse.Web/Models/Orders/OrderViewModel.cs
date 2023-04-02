@@ -2,6 +2,10 @@
 
 public class OrderViewModel
 {
+    public OrderViewModel()
+    {
+        CreatedTime = DateTime.Now;
+    }
     public int Id { get; set; }
     public DateTime CreatedTime { get; set; }
 

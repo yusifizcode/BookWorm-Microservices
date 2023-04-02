@@ -2,8 +2,16 @@
     ViewData["Title"] = "CheckoutHistory";
 }
 @model List<OrderViewModel>
+<style>
+    #site-header .space-bottom-wd-6, .space-wd-6, .space-xl-5, .space-6 {
+        padding-bottom: 0px !important;
+    }
 
-<div class="row">
+    .space-xl-5 {
+        padding-top: 6rem !important;
+    }
+</style>
+@*<div class="row">
 
     <div class="col-md-12">
 
@@ -55,4 +63,100 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
+
+
+<main id="content" class="space-xl-5" style="padding-bottom:6rem !important;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8  mb-5 mb-lg-7">My account</h6>
+                <div class="tab-wrapper">
+                    <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0 active" asp-controller="User" asp-action="Index">
+                                <span class="font-weight-normal text-gray-600">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Order" asp-action="CheckoutHistory">
+                                <span class="font-weight-normal text-gray-600">Order History</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Courses" asp-action="Index">
+                                <span class="font-weight-normal text-gray-600">My Products</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Courses" asp-action="Create">
+                                <span class="font-weight-normal text-gray-600">Create Product</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Auth" asp-action="SignOut">
+                                <span class="font-weight-normal text-gray-600">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content" id="pills-tabContent">
+                    
+                    <div class="tab-pane fade show active" id="pills-two-example1" role="tabpanel"
+                         aria-labelledby="pills-two-example1-tab">
+                        <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9 space-bottom-lg-2 mb-lg-4">
+                            <h6 class="font-weight-medium font-size-7 ml-lg-1 mb-lg-4 pb-xl-1">Order History</h6>
+                            @if (Model.Any())
+                            {
+                                <table class="table">
+                                    <thead>
+                                        <tr class="border">
+                                            <th scope="col"
+                                            class="py-3 border-bottom-0 font-weight-medium pl-3 pl-lg-5">Order (payment) No</th>
+                                            <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Purchase date</th>
+                                            <th scope="col" class="py-3 border-bottom-0 font-weight-medium">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="border">
+                                                <th class="pl-3 pl-md-5 font-weight-normal align-middle py-6">@item.Id</th>
+                                                <td class="align-middle py-5">@item.CreatedTime.ToShortDateString()</td>
+                                                <td class="align-middle py-5">
+                                                    <table class="table table-striped">
+
+                                                        <tr class="border">
+                                                            <th>Name</th>
+                                                            <th>Price</th>
+                                                        </tr>
+                                                        @foreach (var orderItem in item.OrderItems)
+                                                        {
+                                                            <tr>
+                                                                <td scope="col" class="py-3 border-bottom-0 font-weight-medium">@orderItem.ProductName</td>
+                                                                <td scope="col" class="py-3 border-bottom-0 font-weight-medium">$@orderItem.Price</td>
+                                                            </tr>
+                                                        }
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        }
+                                        
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="alert alert-info">Orders are not found!</div>
+                            }
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

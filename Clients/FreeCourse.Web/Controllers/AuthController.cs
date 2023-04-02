@@ -17,6 +17,31 @@ public class AuthController : Controller
         return View();
     }
 
+    public IActionResult SignUp()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SignUp(SignUpInput signUpInput)
+    {
+        if (!ModelState.IsValid)
+            return View();
+
+        var response = await _identityService.SignUp(signUpInput);
+
+        if (!response.IsSuccessful)
+        {
+            response.Errors.ForEach(e =>
+            {
+                ModelState.AddModelError("SignUp", e);
+            });
+
+            return View();
+        }
+        return RedirectToAction(nameof(SignIn));
+    }
+
     [HttpPost]
     public async Task<IActionResult> SignIn(SignInInput signInInput)
     {

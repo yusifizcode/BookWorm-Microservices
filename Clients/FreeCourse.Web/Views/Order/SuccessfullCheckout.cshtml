@@ -2,10 +2,82 @@
 @{
     ViewData["Title"] = "SuccessfullCheckout";
 }
-
-<div class="alert alert-info">
+@*@model OrderViewModel*@
+@*<div class="alert alert-info">
 
     <p>Order(payment) successfully completed</p>
     <p>Order(payment) no : @ViewBag.OrderId</p>
 </div>
-<a class="btn btn-primary" asp-controller="Home" asp-action="Index">Go to Home</a>
+<a class="btn btn-primary" asp-controller="Home" asp-action="Index">Go to Home</a>*@
+
+<main id="content">
+    <div class="bg-gray-200 space-bottom-3">
+        <div class="container">
+            <div class="py-5 py-lg-7">
+                <h6 class="font-weight-medium font-size-7 text-center mt-lg-1">Order Received</h6>
+            </div>
+            <div class="max-width-890 mx-auto">
+                <div class="bg-white pt-6 border">
+                    <h6 class="font-size-3 font-weight-medium text-center mb-4 pb-xl-1">
+                        Thank you. Your order has
+                        been received.
+                    </h6>
+                    <div class="border-bottom mb-5 pb-5 overflow-auto overflow-md-visible">
+                        <div class="pl-3">
+                            <table class="table table-borderless mb-0 ml-1">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="font-size-2 font-weight-normal py-0">
+                                            Order number:
+                                        </th>
+                                        <th scope="col" class="font-size-2 font-weight-normal py-0">
+                                            Date:
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="pr-0 py-0 font-weight-medium">@ViewBag.OrderId</th>
+                                        <th scope="row" class="pr-0 py-0 font-weight-medium">@DateTime.Now.ToString("MMM d, yyyy")</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a asp-controller="Home" asp-action="Index" class="button alt btn btn-dark btn-block rounded-0 py-4">Go to Home</a>
+                    @*<div class="border-bottom mb-5 pb-6">
+                        <div class="px-3 px-md-4">
+                            <div class="ml-md-2">
+                                <h6 class="font-size-3 on-weight-medium mb-4 pb-1">Order Details</h6>
+                                
+                                @foreach (var orderItem in Model.OrderItems)
+                                {
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <div class="d-flex align-items-baseline">
+                                            <div>
+                                                <h6 class="font-size-2 font-weight-normal mb-1">
+                                                    @orderItem.ProductName
+                                                </h6>
+                                                <span class="font-size-2 text-gray-600">(Paperback, English)</span>
+                                            </div>
+                                        </div>
+                                        <span class="font-weight-medium font-size-2">$@orderItem.Price</span>
+                                    </div>
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-bottom mb-5 pb-4">
+                        <div class="px-3 pl-md-5 pr-md-4">
+                            <div class="d-flex justify-content-between">
+                                <span class="font-size-2 font-weight-medium">Total</span>
+                                <span class="font-weight-medium fon-size-2">$@ViewBag.Basket.TotalPrice</span>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

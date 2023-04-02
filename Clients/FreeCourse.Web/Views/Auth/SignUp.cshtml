@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+}
+@model SignUpInput
+<style>
+    #site-header .space-bottom-wd-6, .space-wd-6, .space-xl-5, .space-6 {
+        padding-bottom: 0px !important;
+    }
+
+    .space-xl-5 {
+        padding-top: 6rem !important;
+    }
+</style>
+
+<div class="row space-xl-5" style="padding-bottom:6rem !important;">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center">Register</h3>
+                <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                <form asp-controller="Auth" asp-action="SignUp" method="post">
+                     <div class="mb-3">
+                        <label asp-for="UserName" for="exampleInputEmail1" class="form-label"></label>
+                        <input asp-for="UserName" class="form-control" id="exampleInputEmail1">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" for="exampleInputEmail1" class="form-label"></label>
+                        <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" for="exampleInputPassword1" class="form-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="City" class="form-label" for="exampleCheck1"></label>
+                        <input asp-for="City" class="form-control" class="form-label" id="exampleCheck1">
+                    </div>
+                    <button type="submit" class="btn w-100" style="background-color:#fff6f6;">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Globalization;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -125,7 +126,7 @@ public class IdentityService : IIdentityService
         if (token.IsError)
         {
             var responseContent = await token.HttpResponse.Content.ReadAsStringAsync();
-            var errorDto = JsonSerializer.Deserialize<ErrorDto>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var errorDto = System.Text.Json.JsonSerializer.Deserialize<ErrorDto>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             return Response<bool>.Fail(errorDto.Errors, 400);
         }
@@ -158,4 +159,39 @@ public class IdentityService : IIdentityService
         await _contextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, authenticationProperties);
         return Response<bool>.Success(200);
     }
+
+    public async Task<Response<bool>> SignUp(SignUpInput signUpInput)
+    {
+        var discovery = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
+        {
+            Address = _serviceApiSettings.IdentityBaseUri,
+            Policy = new DiscoveryPolicy { RequireHttps = false }
+        });
+
+        if (discovery.IsError)
+            throw discovery.Exception;
+
+        var passwordTokenRequest = new ClientCredentialsTokenRequest
+        {
+            ClientId = _clientSettings.WebClient.ClientId,
+            ClientSecret = _clientSettings.WebClient.ClientSecret,
+            Address = discovery.TokenEndpoint
+        };
+        var token = await _httpClient.RequestClientCredentialsTokenAsync(passwordTokenRequest);
+
+        if (token.IsError)
+        {
+            var responseContent = await token.HttpResponse.Content.ReadAsStringAsync();
+            var errorDto = System.Text.Json.JsonSerializer.Deserialize<ErrorDto>(responseContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return Response<bool>.Fail(errorDto.Errors, 400);
+        }
+
+        var accessToken = System.Text.Json.JsonSerializer.Deserialize<AccessTokenDto>(token.Raw);
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.access_token);
+
+        var response = await _httpClient.PostAsJsonAsync<SignUpInput>("http://localhost:5001/api/user/signup", signUpInput);
+        return Response<bool>.Success(200);
+    }
 }
+
