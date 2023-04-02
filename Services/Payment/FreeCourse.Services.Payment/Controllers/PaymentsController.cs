@@ -4,6 +4,7 @@ using FreeCourse.Shared.DTOs;
 using FreeCourse.Shared.Messages;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 
 namespace FreeCourse.Services.Payment.Controllers;
 
@@ -45,7 +46,52 @@ public class PaymentsController : CustomBaseController
 
         await sendEndpoint.Send<CreateOrderMessageCommand>(createOrderMessageCommand);
 
-        return CreateActionResultInstance(Shared.DTOs.Response<NoContent>.Success(200));
+        try
+        {
+            StripeConfiguration.ApiKey = "sk_test_51MsRiLGVwWWuLvrTdJpuEObgwZOdlfB6mCymd4Nro1JqeJMbSNphwHY85eHbaq54jGKS2i8fVBWJiJwjRoOQie6B00sTkyhmz1";
+
+            var optionsToken = new TokenCreateOptions
+            {
+                Card = new TokenCardOptions
+                {
+                    Name = paymentDto.CardName,
+                    Number = paymentDto.CardNumber,
+                    ExpYear = paymentDto.Expiration.Trim().ToLower().Split("/")[1],
+                    ExpMonth = paymentDto.Expiration.Trim().ToLower().Split("/")[0],
+                    Cvc = paymentDto.CVV
+                }
+            };
+
+            var serviceToken = new TokenService();
+            Token stripeToken = await serviceToken.CreateAsync(optionsToken);
+
+            var options = new ChargeCreateOptions
+            {
+                Amount = (long)paymentDto.TotalPrice * 100,
+                Currency = "usd",
+                Description = "test",
+                Source = stripeToken.Id
+            };
+
+            var service = new ChargeService();
+            Charge charge = await service.CreateAsync(options);
+
+            if (charge.Paid)
+            {
+                return CreateActionResultInstance(Shared.DTOs.Response<NoContent>.Success(200));
+            }
+            else
+            {
+                return CreateActionResultInstance(Shared.DTOs.Response<NoContent>.Fail("An error ocurred while payment!", 500));
+            }
+        }
+        catch (System.Exception e)
+        {
+
+            return CreateActionResultInstance(Shared.DTOs.Response<NoContent>.Fail("An error ocurred while payment!", 500));
+        }
+
+        //return CreateActionResultInstance(Shared.DTOs.Response<NoContent>.Success(200));
     }
 
 }
