@@ -12,7 +12,7 @@ public class ShopController : Controller
         _catalogService = catalogService;
     }
 
-    public async Task<IActionResult> Index(int page = 1)
+    public async Task<IActionResult> Index(string title, int page = 1)
     {
         ViewBag.Page = page;
         var courseVMs = await _catalogService.GetAllCourseAsync();
@@ -25,6 +25,8 @@ public class ShopController : Controller
                 return NotFound();
         }
 
+        if (title != null)
+            courseVMs = courseVMs.Where(x => x.Name.ToLower().Contains(title.ToLower())).ToList();
 
         return View(courseVMs.Skip((page - 1) * 10).Take(10).ToList());
     }

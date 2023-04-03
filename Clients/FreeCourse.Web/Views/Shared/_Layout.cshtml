@@ -175,7 +175,78 @@
                     <div class="col-3 col-md-5 position-static">
                         <ul class="nav justify-content-end align-items-center">
                             
-                            
+                            <li class="nav-item d-none d-md-block">
+
+                                <div id="searchSlideDown" class="dropdown-unfold u-search-slide-down"
+                                     aria-labelledby="searchSlideDownInvoker">
+                                    <form asp-controller="Shop" asp-action="Index">
+
+                                        <div class="input-group input-group-borderless u-search-slide-down__input rounded mb-2">
+                                            <div class="input-group-prepend">
+                                                <button class="input-group-text font-size-3 nav-link">
+                                                    <span class="flaticon-loupe"></span>
+                                                </button>
+                                            </div>
+                                            <input type="search" name="title" class="form-control px-3" placeholder="Search BookWorm"
+                                                   aria-label="Search BookWorm">
+                                            <div class="input-group-append">
+                                                <a class="input-group-text px-4" href="javascript:;" aria-label="close"
+                                                   data-unfold-event="click" data-unfold-hide-on-scroll="false"
+                                                   data-unfold-target="#searchSlideDown" data-unfold-type="css-animation"
+                                                   data-unfold-animation-in="active" data-unfold-animation-out="fadeOutUp" data-unfold-delay="0"
+                                                   data-unfold-duration="800" data-unfold-overlay='{
+                                                    "className": "u-search-slide-down-bg-overlay",
+                                                    "background": "rgba(55, 125, 255, .1)",
+                                                    "animationSpeed": 400
+                                                }'>
+                                                    <span class="fas fa-times" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                      @*  <div class="rounded bg-white u-search-slide-down__suggestions py-3 px-3">
+                                            <ul class="list-group list-unstyled list-group-flush list-group-borderless mb-0">
+                                                <li>
+                                                    <a class="list-group-item list-group-item-action text-dark font-size-2" href="#">
+                                                        About
+                                                        BookWorm
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="list-group-item list-group-item-action text-dark font-size-2" href="#">
+                                                        Getting
+                                                        Started
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="list-group-item list-group-item-action text-dark font-size-2"
+                                                       href="#">Documentation</a>
+                                                </li>
+                                            </ul>
+                                        </div>*@
+
+                                    </form>
+                                </div>
+
+
+                                <div class="position-relative">
+                                    <a id="searchSlideDownInvoker"
+                                       class="shadow-none font-size-3 nav-link link-black-100 border-0 btn btn-xs btn-icon btn-text-secondary u-search-slide-down-trigger"
+                                       href="javascript:;" role="button" aria-haspopup="true" aria-expanded="false"
+                                       aria-controls="searchSlideDown" data-unfold-type="css-animation" data-unfold-hide-on-scroll="false"
+                                       data-unfold-target="#searchSlideDown" data-unfold-animation-in="active"
+                                       data-unfold-animation-out="fadeOutUp" data-unfold-delay="0" data-unfold-duration="800"
+                                       data-unfold-overlay='{
+                                        "className": "u-search-slide-down-bg-overlay",
+                                        "background": "rgba(55, 125, 255, .1)",
+                                        "animationSpeed": 400
+                                    }'>
+                                        <span class="flaticon-loupe text-white btn-icon__inner u-search-slide-down-trigger__icon"></span>
+                                    </a>
+                                </div>
+
+                            </li>
                                 @if (User.Identity.IsAuthenticated)
                     {
                                 <li class="nav-item">
