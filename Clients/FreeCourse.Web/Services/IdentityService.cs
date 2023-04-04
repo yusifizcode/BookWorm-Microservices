@@ -190,7 +190,7 @@ public class IdentityService : IIdentityService
         var accessToken = System.Text.Json.JsonSerializer.Deserialize<AccessTokenDto>(token.Raw);
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken.access_token);
 
-        var response = await _httpClient.PostAsJsonAsync<SignUpInput>("http://localhost:5001/api/user/signup", signUpInput);
+        var response = await _httpClient.PostAsJsonAsync<SignUpInput>($"{_serviceApiSettings.IdentityBaseUri}/api/user/signup", signUpInput);
         return Response<bool>.Success(200);
     }
 }
