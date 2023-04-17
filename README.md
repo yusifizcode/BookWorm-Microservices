@@ -22,11 +22,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 Date : 2023-04-06 01:37:21
 
-Directory c:\\Users\\User\\Desktop\\UdemyMicroservices
-
 Total : 404 files,  52332 codes, 6877 comments, 10724 blanks, all 69933 lines
-
-Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |
