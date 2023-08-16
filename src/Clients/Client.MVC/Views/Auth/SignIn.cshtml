@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "SignIn";
+}
+@model SignInInput
+
+<style>
+    #site-header .space-bottom-wd-6, .space-wd-6, .space-xl-5, .space-6 {
+        padding-bottom: 0px !important;
+    }
+
+    .space-xl-5 {
+        padding-top: 6rem !important;
+    }
+</style>
+
+<div class="row space-xl-5" style="padding-bottom:6rem !important;">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center">Login</h3>
+                <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
+                <form asp-controller="Auth" asp-action="SignIn" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Email" for="exampleInputEmail1" class="form-label"></label>
+                        <input asp-for="Email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <span  asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" for="exampleInputPassword1" class="form-label"></label>
+                        <input asp-for="Password" type="password" class="form-control" id="exampleInputPassword1">
+                        <span  asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input asp-for="IsRemember" type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label asp-for="IsRemember" class="form-check-label" for="exampleCheck1"></label>
+                    </div>
+                    <button type="submit" class="btn w-100 mb-2" style="background-color:#fff6f6;">Login</button>
+                    <a asp-controller="Auth" asp-action="SignUp" class="button alt btn btn-dark btn-block rounded-0 py-3 w-100">Create Account</a>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>

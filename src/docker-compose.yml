@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  catalogdb:
+    image: mongo
+  basketdb:
+    image: redis
+  discountdb:
+    image: postgres
+  identitydb:
+    image: mcr.microsoft.com/mssql/server
+  orderdb:
+    image: mcr.microsoft.com/mssql/server
+  rabbitmq:
+    image: rabbitmq:3.11.11-management
+
+  catalog.api:
+    image: catalog_api_image
+    build: 
+      context: .
+      dockerfile: Services/Catalog/Catalog.API/Dockerfile
+  identityserver.api:
+    image: identityserver_api_image
+    build: 
+      context: .
+      dockerfile: IdentityServer/IdentityServer.API/Dockerfile
+  basket.api:
+    image: basket_api_image
+    build: 
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
+  photostock.api:
+    image: photostock_api_image
+    build: 
+      context: .
+      dockerfile: Services/PhotoStock/PhotoStock.API/Dockerfile
+  discount.api:
+    image: discount_api_image
+    build: 
+      context: .
+      dockerfile: Services/Discount/Discount.API/Dockerfile
+  payment.api:
+    image: payment_api_image
+    build: 
+      context: .
+      dockerfile: Services/Payment/Payment.API/Dockerfile
+  order.api:
+    image: order_api_image
+    build: 
+      context: .
+      dockerfile: Services/Order/Order.API/Dockerfile
+  gateway.api:
+    image: gateway_api_image
+    build: 
+      context: .
+      dockerfile: Gateways/Gateway/Dockerfile
+  aspnetcoremvc.web:
+    image: aspnetcoremvc.web_image
+    build: 
+      context: .
+      dockerfile: Clients/Client.MVC/Dockerfile
+
+volumes:
+  catalogdb_volume:
+  discountdb_volume:
+  identitydb_volume:
+  orderdb_volume:
