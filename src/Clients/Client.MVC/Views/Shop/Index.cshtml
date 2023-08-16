@@ -1,4 +1,4 @@
-﻿@model List<CourseViewModel>
+﻿@model List<ProductViewModel>
 @{
     ViewData["Title"] = "Index";
     int page = ViewBag.Page;
@@ -498,13 +498,13 @@
                                                                             <a href="#/clothing">Audio CD</a>
                                                                         </li>
                                                                         <li class="cat-item cat-item-69 cat-parent">
-                                                                            <a href="#/electronics/">Audio Book</a>
+                                                                            <a href="#/electronics/">Audio product</a>
                                                                         </li>
                                                                         <li class="cat-item cat-item-65 cat-parent">
                                                                             <a href="#/kitchen/">Hardcover</a>
                                                                         </li>
                                                                         <li class="cat-item cat-item-11 cat-parent"><a
-                                                                                href="#/music/">Kindle Books</a>
+                                                                                href="#/music/">Kindle products</a>
                                                                         </li>
                                                                         <li class="cat-item cat-item-12"><a
                                                                                 href="#/posters/">Paperback</a></li>
@@ -745,7 +745,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div id="Featuredbooks" class="widget p-4d875 border">
+                                                            <div id="Featuredproducts" class="widget p-4d875 border">
                                                                 <div id="widgetHeading25" class="widget-head">
                                                                     <a class="d-flex align-items-center justify-content-between text-dark"
                                                                         href="#" data-toggle="collapse"
@@ -754,7 +754,7 @@
                                                                         aria-controls="widgetCollapse25">
                                                                         <h3
                                                                             class="widget-title mb-0 font-weight-medium font-size-3">
-                                                                            Featured Books</h3>
+                                                                            Featured products</h3>
                                                                         <svg class="mins"
                                                                             xmlns="http://www.w3.org/2000/svg"
                                                                             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -853,36 +853,36 @@
                             <ul
                                 class="products list-unstyled row no-gutters row-cols-2 row-cols-lg-3 row-cols-xl-5 border-top border-left mb-6">
                                 
-                                @foreach (var book in Model)
+                                @foreach (var product in Model)
                             {
                                 <li class="product col">
                                     <div class="product__inner overflow-hidden p-3 p-md-4d875">
                                         <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link d-block position-relative">
                                             <div class="woocommerce-loop-product__thumbnail">
-                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id" class="d-block">
-                                                    <img src="@book.StockPictureUrl"
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id" class="d-block">
+                                                    <img src="@product.StockPictureUrl"
                                                      class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                      alt="image-description">
                                                 </a>
                                             </div>
                                             <div class="woocommerce-loop-product__body product__body pt-3 bg-white">
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id">@book.Name</a>
+                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id">@product.Name</a>
                                                 </div>
                                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 text-height-2 crop-text-2 h-dark">
-                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id">
-                                                        @book.ShortDescription
+                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id">
+                                                        @product.ShortDescription
                                                     </a>
                                                 </h2>
                                                 
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>@book.Price
+                                                        <span class="woocommerce-Price-currencySymbol">$</span>@product.Price
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="product__hover d-flex align-items-center">
-                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id"
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id"
                                                class="text-uppercase text-dark h-dark font-weight-medium mr-auto"
                                                data-toggle="tooltip" data-placement="right" title=""
                                                data-original-title="ADD TO CART">
@@ -905,39 +905,39 @@
 
                             <ul class="products list-unstyled mb-6">
                                 
-                                @foreach (var book in Model)
+                                @foreach (var product in Model)
                             {
                                 <li class="product product__list">
                                     <div class="product__inner overflow-hidden p-3 p-md-4d875">
                                         <div class="woocommerce-LoopProduct-link woocommerce-loop-product__link row position-relative">
                                             <div class="col-md-auto woocommerce-loop-product__thumbnail mb-3 mb-md-0">
-                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id" class="d-block">
-                                                    <img src="@book.StockPictureUrl"
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id" class="d-block">
+                                                    <img src="@product.StockPictureUrl"
                                                      class="img-fluid d-block mx-auto attachment-shop_catalog size-shop_catalog wp-post-image img-fluid"
                                                      alt="image-description">
                                                 </a>
                                             </div>
                                             <div class="col-md woocommerce-loop-product__body product__body pt-3 bg-white mb-3 mb-md-0">
                                                 <div class="text-uppercase font-size-1 mb-1 text-truncate">
-                                                    <a asp-controller ="Home" asp-action="Detail" asp-route-id="@book.Id">PAPERBACK</a>
+                                                    <a asp-controller ="Home" asp-action="Detail" asp-route-id="@product.Id">PAPERBACK</a>
                                                 </div>
                                                 <h2 class="woocommerce-loop-product__title product__title h6 text-lh-md mb-1 crop-text-2 h-dark">
-                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id" tabindex="0">
-                                                        @book.Name
+                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id" tabindex="0">
+                                                        @product.Name
                                                     </a>
                                                 </h2>
                                                 
                                                 <p class="font-size-2 mb-2 crop-text-2">
-                                                    @book.ShortDescription
+                                                    @product.ShortDescription
                                                 </p>
                                                 <div class="price d-flex align-items-center font-weight-medium font-size-3">
                                                     <span class="woocommerce-Price-amount amount">
-                                                        <span class="woocommerce-Price-currencySymbol">$</span>@book.Price
+                                                        <span class="woocommerce-Price-currencySymbol">$</span>@product.Price
                                                     </span>
                                                 </div>
                                             </div>
                                             <div class="col-md-auto d-flex align-items-center">
-                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id"
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@product.Id"
                                                class="text-uppercase text-dark h-dark font-weight-medium mr-4"
                                                data-toggle="tooltip" data-placement="right" title=""
                                                data-original-title="ADD TO CART">

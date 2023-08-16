@@ -15,19 +15,19 @@ public class ShopController : Controller
     public async Task<IActionResult> Index(string title, int page = 1)
     {
         ViewBag.Page = page;
-        var courseVMs = await _catalogService.GetAllCourseAsync();
+        var productVMs = await _catalogService.GetAllProductAsync();
 
-        ViewBag.TotalPages = (int)Math.Ceiling(courseVMs.Count() / 10d);
+        ViewBag.TotalPages = (int)Math.Ceiling(productVMs.Count() / 10d);
 
-        if (courseVMs.Count > 0)
+        if (productVMs.Count > 0)
         {
-            if (page < 1 || page > (int)Math.Ceiling(courseVMs.Count() / 10d))
+            if (page < 1 || page > (int)Math.Ceiling(productVMs.Count() / 10d))
                 return NotFound();
         }
 
         if (title != null)
-            courseVMs = courseVMs.Where(x => x.Name.ToLower().Contains(title.ToLower())).ToList();
+            productVMs = productVMs.Where(x => x.Name.ToLower().Contains(title.ToLower())).ToList();
 
-        return View(courseVMs.Skip((page - 1) * 10).Take(10).ToList());
+        return View(productVMs.Skip((page - 1) * 10).Take(10).ToList());
     }
 }

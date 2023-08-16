@@ -8,11 +8,10 @@ public class MapProfile : Profile
 {
 	public MapProfile()
 	{
-		CreateMap<Course, CourseDto>().ReverseMap();
+		CreateMap<Product, ProductDto>().ReverseMap();
 		CreateMap<Category, CategoryDto>().ReverseMap();
-		CreateMap<Feature, FeatureDto>().ReverseMap();
 
-		CreateMap<Course, CourseCreateDto>().ReverseMap();
-		CreateMap<Course, CourseUpdateDto>().ReverseMap();
+		CreateMap<Product, ProductCreateDto>().ReverseMap();
+		CreateMap<Product, ProductUpdateDto>().ReverseMap();
 	}
 }

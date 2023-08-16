@@ -21,15 +21,15 @@ public class BasketController : Controller
     public async Task<IActionResult> Index()
         => View(await _basketService.Get());
 
-    public async Task<IActionResult> AddBasketItem(string courseId)
+    public async Task<IActionResult> AddBasketItem(string productId)
     {
-        var course = await _catalogService.GetByCourseId(courseId);
+        var product = await _catalogService.GetByProductIdAsync(productId);
 
         var basketItemVM = new BasketItemViewModel
         {
-            CourseId = course.Id,
-            CourseName = course.Name,
-            Price = course.Price,
+            ProductId = product.Id,
+            ProductName = product.Name,
+            Price = product.Price,
         };
 
         await _basketService.AddBasketItem(basketItemVM);
@@ -37,9 +37,9 @@ public class BasketController : Controller
         return RedirectToAction("Index", "Basket");
     }
 
-    public async Task<IActionResult> RemoveBasketItem(string courseId)
+    public async Task<IActionResult> RemoveBasketItem(string productId)
     {
-        await _basketService.RemoveBasketItem(courseId);
+        await _basketService.RemoveBasketItem(productId);
         return RedirectToAction("Index", "Basket");
     }
 

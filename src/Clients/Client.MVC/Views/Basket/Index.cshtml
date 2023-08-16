@@ -49,7 +49,7 @@
                                     $@item.GetCurrentPrice @(Model.HasDiscount ? $"(%{Model.DiscountRate.Value} applied)" : "")
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger" asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-courseId="@item.CourseId">Delete</a>
+                                    <a class="btn btn-danger" asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-productId="@item.productId">Delete</a>
                                 </td>
                             </tr>
                         }
@@ -150,7 +150,7 @@
                                                         <td class="product-name" data-title="Product">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="ml-3 m-w-200-lg-down">
-                                                                    <a href="#">@item.CourseName</a>
+                                                                    <a href="#">@item.ProductName</a>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -161,7 +161,7 @@
                                                         </td>
 
                                                         <td class="product-remove">
-                                                            <a asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-courseId="@item.CourseId" class="remove" aria-label="Remove this item">
+                                                            <a asp-controller="Basket" asp-action="RemoveBasketItem" asp-route-productId="@item.ProductId" class="remove" aria-label="Remove this item">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                              xmlns:xlink="http://www.w3.org/1999/xlink" width="15px"
                                                              height="15px">

@@ -57,10 +57,10 @@ public class OrderService : IOrderService
         {
             var orderItem = new OrderItemCreateInput()
             {
-                ProductId = x.CourseId,
+                ProductId = x.ProductId,
                 Price = x.GetCurrentPrice,
                 PictureUrl = "",
-                ProductName = x.CourseName
+                ProductName = x.ProductName
             };
             orderCreateInput.OrderItems.Add(orderItem);
         });
@@ -104,10 +104,10 @@ public class OrderService : IOrderService
         {
             var orderItem = new OrderItemCreateInput()
             {
-                ProductId = x.CourseId,
+                ProductId = x.ProductId,
                 Price = x.GetCurrentPrice,
                 PictureUrl = "",
-                ProductName = x.CourseName
+                ProductName = x.ProductName
             };
             orderCreateInput.OrderItems.Add(orderItem);
         });

@@ -34,7 +34,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                 });
 
 builder.Services.AddControllersWithViews()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CourseCreateInputValidator>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductCreateInputValidator>());
 
 
 var app = builder.Build();

@@ -24,7 +24,7 @@ builder.Services.AddMassTransit(x =>
 
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 // Add services to the container.
 
@@ -63,8 +63,8 @@ using (var scope = app.Services.CreateScope())
 
     if (!(await categoryService.GetAllAsync()).Data.Any())
     {
-        await categoryService.CreateAsync(new CategoryDto { Name = "Asp.net Core Kursu" });
-        await categoryService.CreateAsync(new CategoryDto { Name = "Asp.net Core API Kursu" });
+        await categoryService.CreateAsync(new CategoryDto { Name = "Featured" });
+        await categoryService.CreateAsync(new CategoryDto { Name = "Bestselling" });
     }
 }
 

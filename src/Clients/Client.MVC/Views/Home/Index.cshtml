@@ -1,9 +1,9 @@
-﻿@model List<CourseViewModel>
+﻿@model List<ProductViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
 @*
-<h2>Courses</h2>
+<h2>Products</h2>
 <hr />
 
 @if (Model.Any())
@@ -539,7 +539,7 @@
                          "slidesToShow": 1
                        }
                     }]'>
-                @foreach (CourseViewModel item in ViewBag.Featured)
+                @foreach (ProductViewModel item in ViewBag.Featured)
                 {
                     <li class="product product__space border bg-hover-white">
             <div class="product__inner overflow-hidden p-4d875">
@@ -602,7 +602,7 @@
                          "slidesToShow": 1
                        }
                     }]'>
-                @foreach (CourseViewModel item in ViewBag.Biographies)
+                @foreach (ProductViewModel item in ViewBag.Biographies)
                 {
 
                     <div class="product product__card bg-hover-white border-right">

@@ -20,14 +20,14 @@ namespace Client.MVC.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Featured = _catalogService.GetAllCourseAsync().Result.Skip(2).Take(5).ToList();
-            ViewBag.Biographies = _catalogService.GetAllCourseAsync().Result.Skip(3).Take(3).ToList();
+            ViewBag.Featured = _catalogService.GetAllProductAsync().Result.Skip(2).Take(5).ToList();
+            ViewBag.Biographies = _catalogService.GetAllProductAsync().Result.Skip(3).Take(3).ToList();
 
-            return View(_catalogService.GetAllCourseAsync().Result.Take(5).ToList());
+            return View(_catalogService.GetAllProductAsync().Result.Take(5).ToList());
         }
 
         public async Task<IActionResult> Detail(string id)
-            => View(await _catalogService.GetByCourseId(id));
+            => View(await _catalogService.GetByProductIdAsync(id));
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

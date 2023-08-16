@@ -22,7 +22,7 @@ public class BasketService : IBasketService
 
         if (basket != null)
         {
-            if (!basket.BasketItems.Any(x => x.CourseId == basketItemViewModel.CourseId))
+            if (!basket.BasketItems.Any(x => x.ProductId == basketItemViewModel.ProductId))
                 basket.BasketItems.Add(basketItemViewModel);
         }
         else
@@ -76,12 +76,12 @@ public class BasketService : IBasketService
 
     }
 
-    public async Task<bool> RemoveBasketItem(string courseId)
+    public async Task<bool> RemoveBasketItem(string productId)
     {
         var basket = await Get();
         if (basket == null) return false;
 
-        var deleteBasketItem = basket.BasketItems.FirstOrDefault(x => x.CourseId == courseId);
+        var deleteBasketItem = basket.BasketItems.FirstOrDefault(x => x.ProductId == productId);
         if (deleteBasketItem == null) return false;
 
         var deleteResult = basket.BasketItems.Remove(deleteBasketItem);

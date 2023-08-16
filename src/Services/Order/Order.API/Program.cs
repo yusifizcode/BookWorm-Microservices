@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumer<CourseNameChangedEventConsumer>();
+    x.AddConsumer<ProductNameChangedEventConsumer>();
     x.AddConsumer<CreateOrderMessageCommandConsumer>();
 
     // Default port: 5672
@@ -34,7 +34,7 @@ builder.Services.AddMassTransit(x =>
 
         cfg.ReceiveEndpoint("course-name-changed-event-order-service", e =>
         {
-            e.ConfigureConsumer<CourseNameChangedEventConsumer>(context);
+            e.ConfigureConsumer<ProductNameChangedEventConsumer>(context);
         });
     });
 });

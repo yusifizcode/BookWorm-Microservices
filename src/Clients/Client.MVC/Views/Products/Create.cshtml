@@ -1,0 +1,163 @@
+﻿@model ProductCreateInput
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    #site-header .space-bottom-wd-6, .space-wd-6, .space-xl-5, .space-6 {
+        padding-bottom: 0px !important;
+    }
+
+    .space-xl-5 {
+        padding-top: 6rem !important;
+    }
+</style>
+
+@*
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Create Course</h5>
+                <form asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label" asp-for="CategoryId"></label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
+                            <option value="">Choose category</option>
+                        </select>
+
+                        <span class="text-danger" asp-validation-for="CategoryId"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Price"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="Description"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Feature.Duration" class="form-label"></label>
+                        <input asp-for="Feature.Duration" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Feature.Duration"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PhotoFormFile" class="form-label"></label>
+                        <input asp-for="PhotoFormFile" type="file" class="form-control" />
+                        <span class="text-danger" asp-validation-for="PhotoFormFile"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<main id="content" class="space-xl-5" style="padding-bottom:6rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <h6 class="font-weight-medium font-size-7 pt-5 pt-lg-8  mb-5 mb-lg-7">My account</h6>
+                <div class="tab-wrapper">
+                    <ul class="my__account-nav nav flex-column mb-0" role="tablist" id="pills-tab">
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0 active" asp-controller="User" asp-action="Index">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Order" asp-action="CheckoutHistory">
+                                <span class="font-weight-normal text-gray-600">Order History</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Products" asp-action="Index">
+                                <span class="font-weight-normal text-gray-600">My Products</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Products" asp-action="Create">
+                                <span class="font-weight-normal text-gray-600">Create Product</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mx-0">
+                            <a class="nav-link d-flex align-items-center px-0" asp-controller="Auth" asp-action="SignOut">
+                                <span class="font-weight-normal text-gray-600">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content" id="pills-tabContent">
+                    
+                    <div class="tab-pane fade show active" id="pills-five-example1" role="tabpanel"
+                         aria-labelledby="pills-five-example1-tab">
+                        <div class="border-bottom">
+                            <div class="pt-5 pl-md-5 pt-lg-8 pl-lg-9">
+                                <div class="font-weight-medium font-size-22 mb-4 pb-xl-1">Create Product</div>
+                            </div>
+                        </div>
+                        <div class="pl-md-5 pl-lg-9 pt-8 space-bottom-2 space-bottom-lg-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card border-0">
+                                        <div class="card-body">
+                                            <form asp-controller="Products" asp-action="Create" method="post" enctype="multipart/form-data">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlInput1" class="form-label" asp-for="CategoryId"></label>
+                                                    <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
+                                                        <option value="">Choose category</option>
+                                                    </select>
+
+                                                    <span class="text-danger" asp-validation-for="CategoryId"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label asp-for="Name" class="form-label"></label>
+                                                    <input asp-for="Name" class="form-control" />
+                                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label asp-for="Price" class="form-label"></label>
+                                                    <input asp-for="Price" class="form-control" />
+                                                    <span class="text-danger" asp-validation-for="Price"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label asp-for="Description" class="form-label"></label>
+                                                    <textarea asp-for="Description" class="form-control"></textarea>
+                                                    <span class="text-danger" asp-validation-for="Description"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Page Size</label>
+                                                    <input asp-for="Count" class="form-control" />
+                                                    <span class="text-danger" asp-validation-for="Count"></span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label asp-for="PhotoFormFile" class="form-label"></label>
+                                                    <input asp-for="PhotoFormFile" type="file" class="form-control" />
+                                                    <span class="text-danger" asp-validation-for="PhotoFormFile"></span>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

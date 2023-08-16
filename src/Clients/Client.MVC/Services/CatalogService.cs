@@ -19,21 +19,21 @@ public class CatalogService : ICatalogService
         _photoStockService = photoStockService;
     }
 
-    public async Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
+    public async Task<bool> CreateProductAsync(ProductCreateInput courseCreateInput)
     {
         var resultPhotoService = await _photoStockService.UploadPhoto(courseCreateInput.PhotoFormFile);
 
         if (resultPhotoService != null)
             courseCreateInput.Picture = resultPhotoService.Url;
 
-        var response = await _client.PostAsJsonAsync<CourseCreateInput>("Courses", courseCreateInput);
+        var response = await _client.PostAsJsonAsync<ProductCreateInput>("Products", courseCreateInput);
 
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<bool> DeleteCourseAsync(string courseId)
+    public async Task<bool> DeleteProductAsync(string productId)
     {
-        var response = await _client.DeleteAsync($"Courses/{courseId}");
+        var response = await _client.DeleteAsync($"Products/{productId}");
 
         return response.IsSuccessStatusCode;
     }
@@ -50,15 +50,15 @@ public class CatalogService : ICatalogService
         return responseSuccess.Data;
     }
 
-    public async Task<List<CourseViewModel>> GetAllCourseAsync()
+    public async Task<List<ProductViewModel>> GetAllProductAsync()
     {
-        // http://localhost:5000/services/catalog/courses
-        var response = await _client.GetAsync("Courses");
+        // http://localhost:5000/services/catalog/products
+        var response = await _client.GetAsync("Products");
 
         if (!response.IsSuccessStatusCode)
             return null;
 
-        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<ProductViewModel>>>();
 
         responseSuccess.Data.ForEach(x =>
         {
@@ -68,15 +68,15 @@ public class CatalogService : ICatalogService
         return responseSuccess.Data;
     }
 
-    public async Task<List<CourseViewModel>> GetAllCourseByUserIdAsync(string userId)
+    public async Task<List<ProductViewModel>> GetAllProductByUserIdAsync(string productId)
     {
-        // http://localhost:5000/services/catalog/courses/GetAllByUserId/{userId}
-        var response = await _client.GetAsync($"Courses/GetAllByUserId/{userId}");
+        // http://localhost:5000/services/catalog/products/GetAllByUserId/{productId}
+        var response = await _client.GetAsync($"Products/GetAllByUserId/{productId}");
 
         if (!response.IsSuccessStatusCode)
             return null;
 
-        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<ProductViewModel>>>();
 
         responseSuccess.Data.ForEach(x =>
         {
@@ -86,32 +86,32 @@ public class CatalogService : ICatalogService
         return responseSuccess.Data;
     }
 
-    public async Task<CourseViewModel> GetByCourseId(string courseId)
+    public async Task<ProductViewModel> GetByProductIdAsync(string productId)
     {
-        // http://localhost:5000/services/catalog/courses/{courseId}
-        var response = await _client.GetAsync($"Courses/{courseId}");
+        // http://localhost:5000/services/catalog/Products/{productId}
+        var response = await _client.GetAsync($"Products/{productId}");
 
         if (!response.IsSuccessStatusCode)
             return null;
 
-        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<CourseViewModel>>();
+        var responseSuccess = await response.Content.ReadFromJsonAsync<Response<ProductViewModel>>();
 
         responseSuccess.Data.StockPictureUrl = _photoHelper.GetPhotoStockUrl(responseSuccess.Data.Picture);
 
         return responseSuccess.Data;
     }
 
-    public async Task<bool> UpdateCourseAsync(CourseUpdateInput courseUpdateInput)
+    public async Task<bool> UpdateProductAsync(ProductUpdateInput productUpdateInput)
     {
-        var resultPhotoService = await _photoStockService.UploadPhoto(courseUpdateInput.PhotoFormFile);
+        var resultPhotoService = await _photoStockService.UploadPhoto(productUpdateInput.PhotoFormFile);
 
         if (resultPhotoService != null)
         {
-            await _photoStockService.DeletePhoto(courseUpdateInput.Picture);
-            courseUpdateInput.Picture = resultPhotoService.Url;
+            await _photoStockService.DeletePhoto(productUpdateInput.Picture);
+            productUpdateInput.Picture = resultPhotoService.Url;
         }
 
-        var response = await _client.PutAsJsonAsync<CourseUpdateInput>("Courses", courseUpdateInput);
+        var response = await _client.PutAsJsonAsync<ProductUpdateInput>("Products", productUpdateInput);
 
         return response.IsSuccessStatusCode;
     }

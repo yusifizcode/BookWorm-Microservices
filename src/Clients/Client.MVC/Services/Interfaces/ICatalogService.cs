@@ -4,12 +4,12 @@ namespace Client.MVC.Services.Interfaces;
 
 public interface ICatalogService
 {
-    Task<List<CourseViewModel>> GetAllCourseAsync();
+    Task<List<ProductViewModel>> GetAllProductAsync();
     Task<List<CategoryViewModel>> GetAllCategoryAsync();
-    Task<CourseViewModel> GetByCourseId(string courseId);
-    Task<List<CourseViewModel>> GetAllCourseByUserIdAsync(string userId);
+    Task<ProductViewModel> GetByProductIdAsync(string productId);
+    Task<List<ProductViewModel>> GetAllProductByUserIdAsync(string userId);
 
-    Task<bool> DeleteCourseAsync(string courseId);
-    Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput);
-    Task<bool> UpdateCourseAsync(CourseUpdateInput courseUpdateInput);
+    Task<bool> DeleteProductAsync(string courseId);
+    Task<bool> CreateProductAsync(ProductCreateInput courseCreateInput);
+    Task<bool> UpdateProductAsync(ProductUpdateInput courseUpdateInput);
 }
